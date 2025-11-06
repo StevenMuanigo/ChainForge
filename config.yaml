@@ -1,0 +1,68 @@
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 8
+
+llm:
+  default_provider: "openai"
+  providers:
+    openai:
+      api_key_env: "OPENAI_API_KEY"
+      default_model: "gpt-4-turbo"
+      temperature: 0.7
+      max_tokens: 2048
+      top_p: 1.0
+    ollama:
+      base_url: "http://localhost:11434"
+      default_model: "mistral"
+    huggingface:
+      api_key_env: "HF_API_KEY"
+      default_model: "meta-llama/Llama-2-7b-chat-hf"
+
+embeddings:
+  provider: "fastembed"
+  model: "BAAI/bge-small-en-v1.5"
+  batch_size: 32
+
+memory:
+  session_backend: "redis"
+  redis:
+    url: "redis://localhost:6379"
+    ttl_seconds: 3600
+  vector_store: "qdrant"
+  qdrant:
+    url: "http://localhost:6333"
+    collection_name: "chainforge_memory"
+    vector_size: 384
+
+rag:
+  chunk_size: 512
+  chunk_overlap: 50
+  retrieval_top_k: 5
+  similarity_threshold: 0.7
+
+chains:
+  max_iterations: 10
+  timeout_seconds: 300
+  enable_graph_view: true
+
+agents:
+  max_tool_calls: 5
+  tool_timeout_seconds: 30
+  enable_reasoning_logs: true
+
+monitoring:
+  enable_metrics: true
+  metrics_port: 9090
+  log_level: "info"
+  log_format: "json"
+  enable_token_tracking: true
+  enable_cost_tracking: true
+
+database:
+  url: "sqlite:./chainforge.db"
+  max_connections: 10
+
+plugins:
+  tools_directory: "./tools"
+  enable_hot_reload: true
