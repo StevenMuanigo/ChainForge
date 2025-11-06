@@ -1,0 +1,33 @@
+# Rust
+/target/
+Cargo.lock
+**/*.rs.bk
+
+# Environment
+.env
+*.log
+
+# Logs
+/logs/
+*.log
+
+# Database
+*.db
+*.sqlite
+*.db-shm
+*.db-wal
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tools directory (if containing sensitive data)
+/tools/*.key
+/tools/*.secret
