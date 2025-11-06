@@ -1,0 +1,83 @@
+[package]
+name = "chain-forge"
+version = "1.0.0"
+edition = "2021"
+authors = ["ChainForge Team"]
+description = "Enterprise LangChain implementation in Rust"
+
+[dependencies]
+# Async Runtime
+tokio = { version = "1.35", features = ["full"] }
+tokio-util = "0.7"
+async-trait = "0.1"
+
+# Web Framework
+axum = { version = "0.7", features = ["macros"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["trace", "cors"] }
+
+# LLM Integration
+async-openai = "0.20"
+reqwest = { version = "0.11", features = ["json", "stream"] }
+tiktoken-rs = "0.5"
+
+# Embeddings & Vector DB
+fastembed = "3.0"
+qdrant-client = "1.7"
+
+# Tokenization
+tokenizers = "0.15"
+
+# Database
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "postgres"] }
+redis = { version = "0.24", features = ["tokio-comp", "connection-manager"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+
+# Configuration
+config = "0.14"
+dotenv = "0.15"
+
+# Logging & Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+
+# Metrics
+prometheus = "0.13"
+lazy_static = "1.4"
+
+# Utilities
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+dashmap = "5.5"
+parking_lot = "0.12"
+
+# Error Handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# PDF & Document Processing
+pdf-extract = "0.7"
+lopdf = "0.31"
+
+# Text Processing
+regex = "1.10"
+unicode-normalization = "0.1"
+
+# Graph Processing
+petgraph = "0.6"
+
+[dev-dependencies]
+mockall = "0.12"
+tempfile = "3.8"
+criterion = "0.5"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
